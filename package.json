@@ -1,0 +1,39 @@
+{
+  "name": "js-notes-app",
+  "version": "1.0.0",
+  "description": "js native blog",
+  "main": "src/script.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "start": "webpack serve --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kllpff/notes-app-js.git"
+  },
+  "keywords": [
+    "js",
+    "blog",
+    "javascript"
+  ],
+  "author": "Kirill Petrov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kllpff/notes-app-js/issues"
+  },
+  "homepage": "https://github.com/kllpff/notes-app-js#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.1",
+    "webpack": "^5.31.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
+  }
+}
