@@ -1,17 +1,17 @@
 export class Form {
 	constructor(form, controls) {
-		this.form = form;
-		this.controls = controls;
+		this.form = form
+		this.controls = controls
 	}
 
 	value() {
-		const value = {};
+		const value = {}
 
 		Object.keys(this.controls).forEach(control => {
-			value[control] = this.form[control].value;
-		});
+			value[control] = this.form[control].value
+		})
 
-		return value;
+		return value
 	}
 
 	clear() {
@@ -21,22 +21,22 @@ export class Form {
 	}
 
 	isValid() {
-		let isFormValid = true;
+		let isFormValid = true
 
 		Object.keys(this.controls).forEach(control => {
-			const validators = this.controls[control];
+			const validators = this.controls[control]
 
-			let isValid = true;
+			let isValid = true
 			validators.forEach(validator => {
-				isValid = validator(this.form[control].value) && isValid;
+				isValid = validator(this.form[control].value) && isValid
 			});
 
 			isValid ? clearError(this.form[control]) : setError(this.form[control])
 
-			isFormValid = isFormValid && isValid;
+			isFormValid = isFormValid && isValid
 		});
 
-		return isFormValid;
+		return isFormValid
 	}
 }
 
