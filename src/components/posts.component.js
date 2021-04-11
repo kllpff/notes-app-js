@@ -17,7 +17,7 @@ export class PostsComponent extends Component {
 		this.loader.show()
 		const fbData = await apiService.fetchPosts()
 		const posts = TransformService.fbObjectToArray(fbData)
-		const html = posts.map(post => renderPost(post, {withButton: false}))
+		const html = posts.map(post => renderPost(post, {withButton: true}))
 		this.loader.hide()
 		this.$el.insertAdjacentHTML('afterbegin', html.join(' '))
 	}
@@ -30,20 +30,26 @@ export class PostsComponent extends Component {
 function buttonHandler(event) {
 	const $el = event.target
 	const id = $el.dataset.id
+	let title = $el.dataset.title
+
+	let postData = {
+		id,
+		title
+	}
 
 	if (id) {
 		let favorites = JSON.parse(localStorage.getItem('favorites')) || []
 
-		if (favorites.includes(id)) {
+		if (favorites.find(i => i.id === id)) {
 			$el.textContent = 'Save'
 			$el.classList.add('button-primary')
 			$el.classList.remove('button-danger')
-			favorites = favorites.filter(fId => fId !== id)
+			favorites = favorites.filter(i => i.id !== id)
 		} else {
 			$el.classList.remove('button-primary')
 			$el.classList.add('button-danger')
 			$el.textContent = 'Delete'
-			favorites.push(id)
+			favorites.push(postData)
 		}
 
 		localStorage.setItem('favorites', JSON.stringify(favorites))

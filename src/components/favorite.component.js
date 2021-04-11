@@ -28,7 +28,7 @@ async function linkHandler(event) {
 	event.preventDefault()
 
 	if (event.target.classList.contains('js-link')) {
-		const postId = event.target.textContent
+		const postId = event.target.dataset.id
 		this.$el.innerHTML = ''
 		this.loader.show()
 		const post = await apiService.fetchPostById(postId)
@@ -38,10 +38,10 @@ async function linkHandler(event) {
 }
 
 function renderList(list = []) {
-	if (list.length) {
+	if (list && list.length) {
 		return `
 			<ul>
-				${list.map(i => `<li><a href="#" class="js-link">${i}</a></li>`).join(' ')}
+				${list.map(i => `<li><a href="#" data-id="${i.id}" class="js-link">${i.title}</a></li>`).join(' ')}
 			</ul>
 		`
 	}
